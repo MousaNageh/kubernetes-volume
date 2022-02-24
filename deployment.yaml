@@ -32,11 +32,19 @@ spec:
         - name: volume-containers
           image: mousanageh/kub-first-app:2
           imagePullPolicy: Always
+          env:
+            - name: STORY_FOLDER
+              value: "story"
+            - name: django-key
+              valueFrom:
+                configMapKeyRef:
+                  name: story-env
+                  key: django-key
           volumeMounts: 
             - mountPath: /app/story
               name: story-volume
       volumes:
-      
+
         # - name: story-volume-claim
           # emptyDir: {}
         
